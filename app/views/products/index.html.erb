@@ -12,27 +12,22 @@
 </head>
 <body class="bg-gray-100">
   <div class="container mx-auto py-8">
-    <h1 class="text-3xl font-bold mb-8">Products</h1>
+    <h1 class="text-3xl font-bold mb-8">Product Catalog</h1>
     
     <div class="grid grid-cols-3 gap-4">
       <% @products.each do |product| %>
         <div class="bg-white rounded-lg shadow p-6">
           <h2 class="text-xl font-bold mb-2"><%= product.title %></h2>
+          <img src="<%= product.image_url %>" alt="<%= product.title %>" class="w-full mb-4">
           <p class="text-gray-600"><%= product.description %></p>
           <div class="mt-4">
-            <%= link_to "View", product, class: "btn btn-blue mr-2" %>
-            <%= link_to "Edit", edit_product_path(product), class: "btn btn-gray mr-2" %>
-            <%= link_to "Delete", product, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-red" %>
+            <%= link_to "View", product_path(product, price: product.price), class: "btn btn-blue mr-2" %>
+            <%= button_to "Add to Cart", cart_path(product_id: product.id), method: :post, class: "btn btn-green" %>
           </div>
         </div>
       <% end %>
     </div>
-    
-    <div class="mt-8">
-      <%= link_to "New Product", new_product_path, class: "btn btn-green" %>
-    </div>
   </div>
 </body>
 </html>
-
 
