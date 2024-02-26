@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Products Page</title>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= csrf_meta_tags %>
+</head>
+<body class="bg-gray-100">
+  <div class="container mx-auto py-8">
+    <h1 class="text-3xl font-bold mb-8">Products</h1>
+    
+    <div class="grid grid-cols-3 gap-4">
+      <% @products.each do |product| %>
+        <div class="bg-white rounded-lg shadow p-6">
+          <h2 class="text-xl font-bold mb-2"><%= product.title %></h2>
+          <p class="text-gray-600"><%= product.description %></p>
+          <div class="mt-4">
+            <%= link_to "View", product, class: "btn btn-blue mr-2" %>
+            <%= link_to "Edit", edit_product_path(product), class: "btn btn-gray mr-2" %>
+            <%= link_to "Delete", product, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-red" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    
+    <div class="mt-8">
+      <%= link_to "New Product", new_product_path, class: "btn btn-green" %>
+    </div>
+  </div>
+</body>
+</html>
+
+

@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+<!-- app/views/products/new.html.erb -->
+<h1 class="text-3xl font-bold underline mb-4">New Product</h1>
+
+<%= form_with(model: @product, class: "max-w-md mx-auto") do |form| %>
+  <div class="mb-4">
+    <%= form.label :name, class: "block text-gray-700 font-bold mb-2" %>
+    <%= form.text_field :name, class: "form-input w-full" %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :description, class: "block text-gray-700 font-bold mb-2" %>
+    <%= form.text_area :description, class: "form-textarea w-full" %>
+  </div>
+
+  <!-- Add additional form fields here -->
+
+  <div class="flex justify-center">
+    <%= form.submit "Create Product", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+  </div>
+<% end %>
+</body>
+</html>
+
