@@ -8,17 +8,29 @@
 <body>
 <!-- app/views/products/new.html.erb -->
 <h1 class="text-3xl font-bold underline mb-4">New Product</h1>
-
+ 
 <%= form_with(model: @product, class: "max-w-md mx-auto") do |form| %>
   <div class="mb-4">
-    <%= form.label :name, class: "block text-gray-700 font-bold mb-2" %>
-    <%= form.text_field :name, class: "form-input w-full" %>
+    <%= form.label :title, class: "block text-gray-700 font-bold mb-2" %>
+    <%= form.text_field :title, class: "form-input w-full" %>
   </div>
 
   <div class="mb-4">
     <%= form.label :description, class: "block text-gray-700 font-bold mb-2" %>
     <%= form.text_area :description, class: "form-textarea w-full" %>
   </div>
+
+  <div class="mb-4">
+    <%= form.label :price, class: "block text-gray-700 font-bold mb-2" %>
+    <%= form.text_field :price, class: "form-input w-full" %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :image_url, class: "block text-gray-700 font-bold mb-2" %>
+    <%= form.text_field :image_url, class: "form-input w-full" %>
+  </div>
+
+
 
   <!-- Add additional form fields here -->
 

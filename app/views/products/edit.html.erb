@@ -2,6 +2,13 @@
 
 <%= render "form", product: @product %>
 
+<% if @product.image_url.present? %>
+  <div>
+    <%= image_tag @product.image_url, alt: "Product Image", style: "max-width: 50%; height: auto;" %>
+  </div>
+<% end %>
+
+
 <br>
 
 <div>
