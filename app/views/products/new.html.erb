@@ -1,43 +1,57 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Set background image using Tailwind CSS */
+    body {
+      background-image: url('https://www.color-hex.com/palettes/37873.png');
+    }
+  </style>
 </head>
-<body>
-<!-- app/views/products/new.html.erb -->
-<h1 class="text-3xl font-bold underline mb-4">New Product</h1>
- 
-<%= form_with(model: @product, class: "max-w-md mx-auto") do |form| %>
-  <div class="mb-4">
-    <%= form.label :title, class: "block text-gray-700 font-bold mb-2" %>
-    <%= form.text_field :title, class: "form-input w-full" %>
+<body class="bg-fixed bg-cover">
+  <!-- app/views/products/new.html.erb -->
+  <div class="container mx-auto py-8">
+    <h1 class="text-3xl font-bold mb-4">New Product</h1>
+   
+    <%= form_with(model: @product, class: "max-w-md mx-auto") do |form| %>
+      <div class="mb-4">
+        <%= form.label :title, class: "block text-gray-700 font-bold mb-2" %>
+        <%= form.text_field :title, class: "form-input w-full border border-black rounded-md" %>
+      </div>
+      
+      <div class="mb-4">
+        <%= form.label :description, class: "block text-gray-700 font-bold mb-2" %>
+        <%= form.text_area :description, class: "form-textarea w-full border border-black rounded-md" %>
+      </div>
+  
+      <div class="mb-4">
+        <%= form.label :price, class: "block text-gray-700 font-bold mb-2" %>
+        <%= form.text_field :price, class: "form-input w-full border border-black rounded-md" %>
+      </div>
+  
+      <div class="mb-4">
+        <%= form.label :image_url, class: "block text-gray-700 font-bold mb-2" %>
+        <%= form.text_field :image_url, class: "form-input w-full border border-black rounded-md" %>
+      </div>
+  
+      <div class="mb-4">
+        <%= form.label :reviews, class: "block text-gray-700 font-bold mb-2" %>
+        <%= form.text_area :reviews, class: "form-textarea w-full border border-black rounded-md" %>
+      </div>
+  
+      <div class="flex justify-center">
+        <%= form.submit "Create Product", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+      </div>
+    <% end %>
+  
+    <div class="flex justify-center mt-4">
+      <div class="bg-gray-200 rounded p-4">
+        <%= link_to "Back to Catalog", products_path, class: "text-gray-700 hover:text-gray-900 hover:underline" %>
+      </div>
+    </div>
   </div>
-
-  <div class="mb-4">
-    <%= form.label :description, class: "block text-gray-700 font-bold mb-2" %>
-    <%= form.text_area :description, class: "form-textarea w-full" %>
-  </div>
-
-  <div class="mb-4">
-    <%= form.label :price, class: "block text-gray-700 font-bold mb-2" %>
-    <%= form.text_field :price, class: "form-input w-full" %>
-  </div>
-
-  <div class="mb-4">
-    <%= form.label :image_url, class: "block text-gray-700 font-bold mb-2" %>
-    <%= form.text_field :image_url, class: "form-input w-full" %>
-  </div>
-
-
-
-  <!-- Add additional form fields here -->
-
-  <div class="flex justify-center">
-    <%= form.submit "Create Product", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
-  </div>
-<% end %>
 </body>
 </html>
-

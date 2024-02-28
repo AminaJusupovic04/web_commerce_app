@@ -27,6 +27,16 @@
   </div>
 
   <div>
+    <%= form.label :image_url, style: "display: block" %>
+    <%= form.text_field :image_url %>
+  </div>
+
+  <div>
+    <%= form.label :reviews, style: "display: block" %>
+    <%= form.text_area :reviews %>
+  </div>
+
+  <div>
     <%= form.submit %>
   </div>
 <% end %>
