@@ -17,22 +17,6 @@
     <div class="mb-4">
       <a href="<%= new_product_path %>" class="btn btn-blue">New Product</a>
     </div>
-
-    <div class="grid grid-cols-3 gap-4">
-  <% @products.each do |product| %>
-    <% unless product.deleted %>
-      <div class="bg-white rounded-lg shadow p-6">
-        <h2 class="text-xl font-bold mb-2"><%= product.title %></h2>
-        <!-- Rest of the product display -->
-        <div>
-          <%= link_to "View", product_path(product), class: "btn btn-blue mr-2" %>
-          <%= button_to "Add to Cart", cart_path(product_id: product.id), method: :post, class: "btn btn-green" %>
-          <%= link_to "Soft Delete", soft_delete_product_path(product), method: :patch, data: { confirm: 'Are you sure?' }, class: "btn btn-red" %>
-        </div>
-      </div>
-    <% end %>
-  <% end %>
-</div>
     
     <div class="grid grid-cols-3 gap-4">
       <% @products.each do |product| %>

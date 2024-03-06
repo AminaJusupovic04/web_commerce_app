@@ -1,63 +1,17 @@
-<div style="background-color: grey; padding: 20px;">
-  <p style="color: green; font-size: 18px;"><%= notice %></p>
+<p style="color: green"><%= notice %></p>
 
-  <% if @product.deleted %>
-    <p style="font-size: 16px;">This product has been soft deleted.</p>
-  <% else %>
-    <%= render @product, style: "max-width: 200px;" %>
-  <% end %>
+<%= render @product %>
 
-  <div class="link-box">
-    <%= link_to "Edit this product", edit_product_path(@product), class: "product-link" %>
-    <%= link_to "Back to products", products_path, class: "product-link" %>
+<!-- Display number of likes -->
+<p><%= @product.likes.count %> <%= (@product.likes.count) == 1 ? 'Like' : 'Likes' %></p>
 
-    <% if !@product.deleted %>
-      <%= button_to "Soft Delete this product", soft_delete_product_path(@product), method: :patch, data: { confirm: 'Are you sure you want to soft delete this product?' }, class: "product-button" %>
-    <% end %>
-  </div>
+<div>
+  <%= link_to "Edit this product", edit_product_path(@product) %> |
+  <%= link_to "Back to products", products_path %>
+
+  <%= button_to "Destroy this product", @product, method: :delete %>
 </div>
 
-<div style="background-color: grey; padding: 20px;">
-  <div class="link-box">
-    <%= link_to "Edit this product", edit_product_path(@product), class: "product-link" %>
-    <%= link_to "Back to products", products_path, class: "product-link" %>
 
-    <%= button_to "Destroy this product", @product, method: :delete, class: "product-button" %>
-  </div>
-</div>
 
-<style>
-  .link-box {
-    display: inline-block;
-    border: 1px solid black;
-    padding: 10px;
-    margin-bottom: 10px;
-  }
 
-  .product-link {
-    color: blue;
-    text-decoration: none;
-    display: block;
-    font-size: 18px;
-  }
-
-  .product-link:hover {
-    color: red;
-  }
-
-  .product-button {
-    background-color: lightgrey;
-    color: black;
-    border: none;
-    padding: 8px 12px;
-    cursor: pointer;
-    display: block;
-    margin-top: 10px;
-    font-size: 18px;
-  }
-
-  .product-button:hover {
-    background-color: grey;
-    color: white;
-  }
-</style>

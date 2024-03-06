@@ -19,6 +19,11 @@ class ProductsController < ApplicationController
   def edit
   end
 
+  def already_liked?
+    Like.where(user_id: current_user.id, product_id: params[:product_id]).exists?
+  end
+  
+
   # POST /products or /products.json
   def create
     @product = Product.new(product_params)
@@ -50,7 +55,7 @@ class ProductsController < ApplicationController
 
   # DELETE /products/1 or /products/1.json
   def destroy
-    @product.update(deleted: true)
+    @product.update(deleted: true, deleted_at: Time.now)
 
     respond_to do |format|
       format.html { redirect_to products_url, notice: "Product was successfully destroyed." }
@@ -69,6 +74,8 @@ class ProductsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def product_params
-      params.require(:product).permit(:title, :description, :price, :image_url, :reviews)
+      params.require(:product).permit(:title, :description, :price, :image_url, :reviews,)
     end
 end
+
+  

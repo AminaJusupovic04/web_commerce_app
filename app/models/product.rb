@@ -1,10 +1,9 @@
 # app/models/product.rb
 class Product < ApplicationRecord
-    # Other model code...
-  
-    # Add attribute for reviews
+    has_many :likes, dependent: :destroy
     attribute :reviews, :text
-  end
+
+end
   
   
   
