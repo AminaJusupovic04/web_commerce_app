@@ -16,13 +16,18 @@
       <!-- Add Like Button -->
       <%= button_to 'Like', product_likes_path(@product), method: :post, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
     </div>
-
     <div class="mt-4">
       <%= link_to "Edit this product", edit_product_path(@product), class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-4" %>
       <%= link_to "Back to products", products_path, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-4" %>
       <%= button_to "Destroy this product", @product, method: :delete, class: "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" %>
     </div>
   </div>
+
+  <%= form_with(model: [@product, @product.comments.build]) do |f| %>
+    <%= f.text_area :body, placeholder: 'Add a comment' %>
+    <%= f.submit 'Submit' %>
+  <% end %>
+
 </body>
 
 
