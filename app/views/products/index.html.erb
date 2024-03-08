@@ -9,6 +9,20 @@
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   <%= csrf_meta_tags %>
+  <style>
+    .product-card {
+      transition: transform 0.3s;
+    }
+    .product-card:hover {
+      transform: scale(1.05);
+    }
+    .btn {
+      transition: background-color 0.3s;
+    }
+    .btn:hover {
+      background-color: #4a90e2;
+    }
+  </style>
 </head>
 <body class="bg-gray-100">
   <div class="container mx-auto py-8">
@@ -20,9 +34,10 @@
     
     <div class="grid grid-cols-3 gap-4">
       <% @products.each do |product| %>
-        <div class="bg-white rounded-lg shadow p-6">
+        <div class="bg-white rounded-lg shadow p-6 product-card">
           <h2 class="text-xl font-bold mb-2"><%= product.title %></h2>
           <img src="<%= product.image_url %>" alt="<%= product.title %>" class="w-full mb-4">
+          <p><%= product.likes.count %> <%= (product.likes.count) == 1 ? 'Like' : 'Likes'%></p>
           <p class="text-gray-600"><%= product.description %></p>
           <p class="text-gray-600">Price: $<%= product.price %></p> <!-- Display price here -->
           <div class="mt-4">
@@ -35,4 +50,5 @@
   </div>
 </body>
 </html>
+
 

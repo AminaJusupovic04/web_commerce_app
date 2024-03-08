@@ -6,21 +6,19 @@
   <div class="container mx-auto p-4">
     <p class="text-green-600"><%= notice %></p>
 
-
     <%= render @product %>
-    
 
-    <div class="flex items-center justify-between bg-gray-200 p-4">
-      <p><%= @product.likes.count %> <%= (@product.likes.count) == 1 ? 'Like' : 'Likes' %></p>
-      
-      <!-- Add Like Button -->
-      <%= button_to 'Like', product_likes_path(@product), method: :post, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
-    </div>
-    <div class="mt-4">
+    <%= button_to 'Like', product_likes_path(@product), method: :post, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+    <p class="text-green-600 hover:text-green-800"><%= @product.likes.count %> <%= (@product.likes.count) == 1 ? 'Like' : 'Likes'%></p>
+
+   
+
+    <div class="mt-4 flex items-center"> <!-- Changed -->
       <%= link_to "Edit this product", edit_product_path(@product), class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-4" %>
       <%= link_to "Back to products", products_path, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-4" %>
       <%= button_to "Destroy this product", @product, method: :delete, class: "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" %>
     </div>
+
   </div>
 
   <%= form_with(model: [@product, @product.comments.build]) do |f| %>
@@ -28,7 +26,19 @@
     <%= f.submit 'Submit' %>
   <% end %>
 
+  <%= puts @product.inspect %>
+  <ul> 
+     <% @product.comments.each do |current_comment| %>
+      <li> 
+      <%= current_comment.body %>
+      </li>
+     <% end %>
+
+  </ul>
+
+ 
 </body>
+
 
 
 
