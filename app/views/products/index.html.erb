@@ -40,15 +40,21 @@
           <p><%= product.likes.count %> <%= (product.likes.count) == 1 ? 'Like' : 'Likes'%></p>
           <p class="text-gray-600"><%= product.description %></p>
           <p class="text-gray-600">Price: $<%= product.price %></p> <!-- Display price here -->
-          <div class="mt-4">
-            <%= link_to "View", product_path(product), class: "btn btn-blue mr-2" %>
-            <%= button_to "Add to Cart", cart_path(product_id: product.id), method: :post, class: "btn btn-green" %>
-          </div>
+          <%= link_to "View", product_path(product), class: "btn btn-green" %>
+          
+          <p>
+            <%= form_with(url: cart_add_path) do |f| %>
+              <%= f.hidden_field :id, value: product.id %>
+              <%= f.hidden_field :quantity, value: 0, min: 1 %>
+              <%= f.submit "Add To Cart" %>
+            <% end %>
+          </p>
         </div>
       <% end %>
     </div>
   </div>
 </body>
 </html>
+
 
 
