@@ -1,6 +1,34 @@
 <h1>Your Cart</h1>
-<p>Your total is $<%= @cart.total %></p>
-<% @cart.orderables.each do |orderable| %>
-   <% poduct = orderable.product %>
-   <p><%= product.name %> * <%= orderable.quantity %> = $<%= product.price * orderable.quantity %></p>
+<% if @cart.orderables.present? %>
+  <% @cart.orderables.each do |orderable| %>
+    <div id="<%= "cart-#{orderable.product.id}" %>">
+      <p>
+        <strong>Title:</strong>
+        <%= orderable.product.title %>
+      </p>
+  
+      <p>
+        <strong>Description:</strong>
+        <%= orderable.product.description %>
+      </p>
+  
+      <p>
+        <strong>Price:</strong>
+        <%= orderable.product.price %>
+      </p>
+  
+      <p>
+        <strong>Quantity:</strong>
+        <%= orderable.quantity %>
+      </p>
+  
+      <%= form_with(url: cart_remove_path(orderable), method: :post) do |f| %>
+        <%= f.submit "Remove" %>
+      <% end %>
+    </div>
+  <% end %>
+  <p>Total: <%= @cart.total %></p>
+<% else %>
+  <p>Your cart is empty</p>
 <% end %>
+

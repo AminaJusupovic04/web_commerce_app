@@ -43,11 +43,10 @@
           <%= link_to "View", product_path(product), class: "btn btn-green" %>
           
           <p>
-            <%= form_with(url: cart_add_path) do |f| %>
-              <%= f.hidden_field :id, value: product.id %>
-              <%= f.hidden_field :quantity, value: 0, min: 1 %>
-              <%= f.submit "Add To Cart" %>
-            <% end %>
+          <%= form_with(url: cart_add_path(product), method: :post) do |f| %>
+            <%= f.hidden_field :quantity, value: 1, min: 1 %>
+            <%= f.submit "Add To Cart" %>
+          <% end %>
           </p>
         </div>
       <% end %>
